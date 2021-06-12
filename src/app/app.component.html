@@ -1,32 +1,32 @@
+<div class="container">
 <!-- emailForm_> stiamo dicendo che è un formGroup -->
 <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
   <!-- ngModel binda quello che c'è nell'input ad un campo presente nella classe -->
-  <input 
-    type="email"
-    pattern=".+@.+\..+" 
-    required 
-    name="email" 
-    [(ngModel)]="email" 
-    #emailControl="ngModel"
-  />
-  <!--ngModel Sostituisce questo in modo molto veloce 
+  <div class="field">
+    <label class="label">Enter email</label>
+    <input class="input" [ngClass]=" {'is-danger': emailControl.invalid && emailControl.touched}" type="email"
+      pattern=".+@.+\..+" required name="email" [(ngModel)]="email" #emailControl="ngModel" />
+    <!--ngModel Sostituisce questo in modo molto veloce 
   <input [value] = "" (input)=""/>
   -->
-  <ng-container *ngIf="emailControl.invalid && emailControl.touched">
-    <div *ngIf="emailControl.errors.required">
-      You must enter an email
-    </div>
-    <div *ngIf="emailControl.errors.pattern">
-      You must enter a valid email
-    </div>
-  </ng-container>
-  <button [disabled]="emailControl.invalid">
+    <ng-container *ngIf="emailControl.invalid && emailControl.touched">
+      <div class="help is-danger" *ngIf="emailControl.errors.required">
+        You must enter an email
+      </div>
+      <div class="help is-danger" *ngIf="emailControl.errors.pattern">
+        You must enter a valid email
+      </div>
+    </ng-container>
+  </div>
+  <button class="button is-primary" [disabled]="emailControl.invalid">
     Submit
   </button>
 </form>
-<hr/>
+<hr />
 <!-- Proprietà di un form group -->
 
 <div> Is form valid: {{ emailForm.valid }}</div>
 <div> Form values: {{ emailForm.value | json }} </div>
 <div> Email validation errors: {{ emailForm.controls.email.errors | json }} </div>
+  
+</div>
