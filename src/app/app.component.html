@@ -1,5 +1,5 @@
 <!-- emailForm_> stiamo dicendo che è un formGroup -->
-<form #emailForm="ngForm">
+<form (ngSubmit)="onSubmit()" #emailForm="ngForm">
   <!-- ngModel binda quello che c'è nell'input ad un campo presente nella classe -->
   <input 
     type="email"
@@ -20,6 +20,9 @@
       You must enter a valid email
     </div>
   </ng-container>
+  <button [disabled]="emailControl.invalid">
+    Submit
+  </button>
 </form>
 <hr/>
 <!-- Proprietà di un form group -->
