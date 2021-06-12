@@ -1,7 +1,12 @@
-<form>
+<!-- emailForm_> stiamo dicendo che è un formGroup -->
+<form #emailForm="ngForm">
   <!-- ngModel binda quello che c'è nell'input ad un campo presente nella classe -->
   <input name = "email" [(ngModel)] = "email" />
   <!--ngModel Sostituisce questo in modo molto veloce 
   <input [value] = "" (input)=""/>
   -->
 </form>
+<hr/>
+<!-- Proprietà di un form group -->
+<div> Is form valid: {{ emailForm.valid }}</div>
+<div> Form values: {{ emailForm.value | json }} </div>
