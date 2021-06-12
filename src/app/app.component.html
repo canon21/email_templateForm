@@ -5,15 +5,25 @@
     type="email"
     pattern=".+@.+\..+" 
     required 
-    name = "email" 
-    [(ngModel)] = "email" 
+    name="email" 
+    [(ngModel)]="email" 
+    #emailControl="ngModel"
   />
   <!--ngModel Sostituisce questo in modo molto veloce 
   <input [value] = "" (input)=""/>
   -->
+  <ng-container *ngIf="emailControl.invalid && emailControl.touched">
+    <div *ngIf="emailControl.errors.required">
+      You must enter an email
+    </div>
+    <div *ngIf="emailControl.errors.pattern">
+      You must enter a valid email
+    </div>
+  </ng-container>
 </form>
 <hr/>
 <!-- Proprietà di un form group -->
+
 <div> Is form valid: {{ emailForm.valid }}</div>
 <div> Form values: {{ emailForm.value | json }} </div>
 <div> Email validation errors: {{ emailForm.controls.email.errors | json }} </div>
